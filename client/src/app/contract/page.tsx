@@ -1,3 +1,5 @@
+export const runtime = 'edge';
+
 import { Contract } from "@/components/Contract";
 
 export default function App() {
