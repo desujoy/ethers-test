@@ -1,4 +1,5 @@
 "use client";
+export const runtime = 'edge';
 
 import { Account } from "@/components/Account";
 import { config } from "@/wagmi";
