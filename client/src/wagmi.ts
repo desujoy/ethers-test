@@ -1,8 +1,7 @@
+import { Abi } from "viem";
 import { http, createConfig, cookieStorage, createStorage } from "wagmi";
 import { Chain, localhost, mainnet, sepolia } from "wagmi/chains";
 import { coinbaseWallet, injected, walletConnect } from "wagmi/connectors";
-
-
 
 export const config = createConfig({
   chains: [mainnet, sepolia, localhost],
@@ -27,4 +26,3 @@ declare module "wagmi" {
     config: typeof config;
   }
 }
-

@@ -2,6 +2,7 @@
   "name": "hardhat-project",
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox-viem": "^3.0.0",
-    "hardhat": "^2.22.1"
+    "hardhat": "^2.22.1",
+    "supports-color": "^9.4.0"
   }
 }

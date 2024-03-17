@@ -1,5 +1,6 @@
-export const runtime = 'edge';
+// export const runtime = 'edge';
 
+import ClientContract from "@/components/ClientContract";
 import { Contract } from "@/components/Contract";
 
 export default function App() {
@@ -38,7 +39,8 @@ export default function App() {
         To get started, connect your wallet and interact with the smart contract
         below.
       </p>
-      <Contract />
+      {/* <Contract /> */}
+      <ClientContract />
     </div>
   );
 }
