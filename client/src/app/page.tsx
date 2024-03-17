@@ -1,6 +1,8 @@
 "use client";
 
+import { Account } from "@/components/Account";
 import { config } from "@/wagmi";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import {
   UseBalanceReturnType,
@@ -10,6 +12,8 @@ import {
   useBalance,
   useConnect,
   useDisconnect,
+  useEnsAvatar,
+  useEnsName,
 } from "wagmi";
 import { localhost, sepolia } from "wagmi/chains";
 
@@ -18,6 +22,10 @@ function App() {
   const account = useAccount();
   const { connectors, connect, status, error } = useConnect();
   const { disconnect } = useDisconnect();
+  const address =
+    account.status === "connected" ? account.addresses[0] : undefined;
+  const { data: ensName } = useEnsName({ address });
+  const { data: ensAvatar } = useEnsAvatar({ name: ensName! });
   const balancehook = useBalance({
     address: account.status === "connected" ? account.addresses[0] : undefined,
     chainId:
@@ -30,6 +38,7 @@ function App() {
         : undefined,
   });
   const balance = balancehook.status === "success" ? balancehook.data : 0;
+
   // if (account.status === "connected") {
   //   // console.log(account);
   //   const balance = useBalance({ address: account.addresses[0], chainId: account.chainId });
@@ -54,9 +63,9 @@ function App() {
   return (
     <>
       <div>
-        <h2>Account</h2>
+        <h2 className="m-4 text-2xl font-bold">Account</h2>
 
-        <div>
+        <div className="m-4">
           status: {account.status}
           <br />
           addresses: {JSON.stringify(account.addresses)}
@@ -70,17 +79,14 @@ function App() {
           chainId: {account.chainId}
         </div>
 
-        {account.status === "connected" && (
-          <button type="button" onClick={() => disconnect()}>
-            Disconnect
-          </button>
-        )}
+        {account.status === "connected" && <Account />}
       </div>
 
-      <div>
+      <div className="m-4">
         <h2>Connect</h2>
         {connectors.map((connector) => (
           <button
+            className="m-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
             key={connector.uid}
             onClick={() => connect({ connector })}
             type="button"
@@ -88,8 +94,26 @@ function App() {
             {connector.name}
           </button>
         ))}
-        <div>{status}</div>
+        <div className="m-4 text-green-500">{status}</div>
         <div>{error?.message}</div>
+      </div>
+      <div className="">
+        <Link href="/contract">
+          <button
+            className="m-2 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full"
+            type="button"
+          >
+            Contract
+          </button>
+        </Link>
+        <Link href="/transact">
+          <button
+            className="m-2 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full"
+            type="button"
+          >
+            Transact
+          </button>
+        </Link>
       </div>
     </>
   );
