@@ -1,4 +1,4 @@
-// export const runtime = 'edge';
+export const runtime = 'edge';
 
 import ClientContract from "@/components/ClientContract";
 import { Contract } from "@/components/Contract";
