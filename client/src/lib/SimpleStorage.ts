@@ -1,7 +1,7 @@
 import { Abi } from "viem";
 import { localhost, sepolia } from "viem/chains";
 
-const simpleAddress: `0x${string}` = `0xF06De75d004cB3aAB82894e069803FB33E964526`;
+const simpleAddress: `0x${string}` = `0xdB497004590F5D824F84050C4Dfb9ac9baBeC287`;
 
 const simpleAbi = [
   {
@@ -52,7 +52,7 @@ const simpleAbi = [
 const simpleStorage = {
   simpleAddress,
   simpleAbi,
-  chainid: localhost.id,
+  chainid: sepolia.id,
 };
 
 
