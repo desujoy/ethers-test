@@ -1,4 +1,4 @@
-import { simpleAbi, simpleAddress } from "@/lib/SimpleStorage";
+import simpleStorage from "@/lib/SimpleStorage";
 import { config } from "@/wagmi";
 import { deserialize } from "v8";
 import { Abi } from "viem";
@@ -11,8 +11,8 @@ import {
 import { readContract, writeContract } from "wagmi/actions";
 
 export async function Contract() {
-  const abi = simpleAbi as Abi;
-  const contractAddress = simpleAddress
+  const abi = simpleStorage.simpleAbi as Abi;
+  const contractAddress = simpleStorage.simpleAddress
   let result;
   let result1;
   try {
